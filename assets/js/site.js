@@ -1,13 +1,15 @@
-// spaghetti monster code: clean up and organize this code (MVC refactoring)
+// spaghetti monster code: 
+// 1. Reading exercise: what does this code do?
+// 2. Clean up and organize this code (MVC refactoring)
 
-// These variables are view code
-const mainContent = document.getElementById('content'); // mainContent refered to a section without a heading, so I replaced the section element by a main element in the DOM
-const newListButton = document.getElementById('newListButton');
+// These global variables are view code
+const mainContent = document.getElementById('content'); // Defines variable for container; mainContent refered to a section without a heading, so I replaced the section element by a main element in the DOM
+const newListButton = document.getElementById('newListButton'); // Defines variable for new-list button.
 
-// Controller code
+// Controller code (inside of it, there are view and model elements)
 newListButton.addEventListener('click', () => {
     // Clear the content (view code)
-    mainContent.innerHTML = '';
+    mainContent.innerHTML = ''; // Says container starts empty. This is also done in the global scope.
     
     // Create a section container (view code)
     const section = document.createElement('section');
@@ -25,7 +27,10 @@ newListButton.addEventListener('click', () => {
     
     // Create text input (view code)
     const input = document.createElement('input');
-    input.type = 'text';
+    /* input.type and input.id are an alternative to input.setAttribute(); the latter is used above for the label 
+    Syntax: setAttribute(name, value) 
+    https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute */
+    input.type = 'text'; 
     input.id = 'listName';
     input.value = 'default name';
     
@@ -33,6 +38,10 @@ newListButton.addEventListener('click', () => {
     const okButton = document.createElement('button');
     okButton.textContent = 'OK';
     // Controller code
+    /* To make the app functional, the found value should be displayed on the page, not just in the console. 
+    The event listener is missing the code required to append a list item containing the user-defined text node. 
+    Instead, the event listener makes the section created by the newListButton event listener (the one with an input) disappear and thereby replaces the input section by the text that was initially visible to the user, before the footer button was clicked. 
+    The Cancel button does the same thing. */
     okButton.addEventListener('click', () => {
         console.log('OK clicked, list name:', input.value);
         firstElementsByMariePierreLessard();
@@ -42,6 +51,7 @@ newListButton.addEventListener('click', () => {
     const cancelButton = document.createElement('button');
     cancelButton.textContent = 'Cancel';
     // Controller code
+    /* The Cancel button's event listener makes the section created by the newListButton event listener (the one with an input) disappear and thereby replaces the input section by the text that was initially visible to the user, before the footer button was clicked. */
     cancelButton.addEventListener('click', () => {
         console.log('Cancel clicked');
         firstElementsByMariePierreLessard();
