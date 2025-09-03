@@ -32,6 +32,7 @@ newListButton.addEventListener('click', () => {
     https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute */
     input.type = 'text'; 
     input.id = 'listName';
+    /* An input obviously doesn't have a value attribute. It is a void element, which allows the user to enter something that could be sent to a server, just like the value of radio buttons is the data sent to a server. */
     input.value = 'default name';
     
     // Create OK button (view code)
